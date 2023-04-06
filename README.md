@@ -7,10 +7,10 @@ This project is created by me for the [Data Engineering Zoomcamp 2023](https://g
 This Project is about Understanding and getting overview of google playstore data . The dataset contain combination of various categories of Apps such as Entertainment,gaming,study related,
 Bussiness Related and much more . 
 Here Comes the problem statements:
--1)Find the most rated apps
--2)Find the most rated apps category wise
--3)find which are the free apps most downloaded
--4)find which are the nonfree apps most downloaded category wise
+- Find the most rated apps
+- Find the most rated apps category wise
+- Find which are the free apps most downloaded
+- Find which are the nonfree apps most downloaded category wise
 
 ## Technologies, tools and data sources used
 - Alpha Vantage API - For stock values & stock sentiments.  
