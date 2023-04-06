@@ -28,7 +28,7 @@ Here Comes the problem statements:
 
 ## Pipeline diagram
  
-![Pipeline Diagram](https://user-images.githubusercontent.com/12958946/229486426-f4ad4065-af9c-41bb-9c5e-6ef807f859d3.PNG)
+![Pipeline Diagram](https://github.com/prashantg6838/datatalk-final-project/blob/main/workflow.JPG)
 
 
 ## Pipeline explanation
