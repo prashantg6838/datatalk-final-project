@@ -1,4 +1,4 @@
-# Build an end-to-end automated data pipeline to visualise Google Playstore scrapped data.
+# Build an end-to-end automated data pipeline to visualize Google Playstore data.
 
 This project is created by me for the [Data Engineering Zoomcamp 2023](https://github.com/DataTalksClub/data-engineering-zoomcamp).  
 
@@ -37,26 +37,17 @@ This Pipe line contain
 - Running spark cluster : Here we are extracting pysprk file from google cloud storage and then aading this file with required details to run the spark cluster on dataproc
 - Ingesting data into the BigQuery : After Processing the data it pushed into the Big Query for Furthe querying and aanalysing data.
 
-## How to replicate 
-
-### Step 0 - Get the following before starting to replicate.  
-- Alpha Vantage API free key - https://www.alphavantage.co/support/#api-key.  
-  
-- GCP service account key(JSON) - Roles -> Owner - https://cloud.google.com/iam/docs/service-accounts-create and https://cloud.google.com/iam/docs/keys-create-delete. 
-- Create a prefect cloud account, create a workspace and an API key - https://docs.prefect.io/ui/cloud-api-keys/.
-- Install Docker - https://docs.docker.com/desktop/.
-
 ### Step 1 - Set up – Takes approximately 15 mins.  
-- Download the entire folder/clone the repo.  
-  
-- Replace the dummy **gcp_key.json** file inside the codes folder with your own key. Make sure to rename it to gcp_key.json.  
+- Download the entire folder/clone the repo. 
+- Download data using command prompt !wget -O file.csv "https://drive.google.com/u/0/uc?id=13TpXWf9I6I2Aaa5Xjy_wfYHjem_4bMqC&export=download"
+- create raw_data named folder and store the csv data and rename to Google-Playstore.csv
 - Start Docker desktop and open terminal in the folder containing your DockerFile.  
 - Build Docker image.  
-`docker build -t de_zc .`  
+`docker build -t de_final_project .`  
 - Create container from image/start the container.   
-`docker run -it --name de_zc_container de_zc`  
+`docker run -it --name de_project_container de_final_project`  
 - *Going forward use this command to start the container.  
-`docker start -i de_zc_container`  
+`docker start -i de_project_containe`  
 - Install gcloud cli and authorize gcloud with browser. You’ll also need your GCP project ID handy to initialise gcloud. Note - Docker OS is Debian. https://cloud.google.com/sdk/docs/install#deb.  
 - Install Terraform. https://developer.hashicorp.com/terraform/downloads. For installation choose Linux(Ubuntu/Debian).
 - Connect to prefect cloud with your key.  
@@ -65,26 +56,16 @@ This Pipe line contain
 `export GOOGLE_APPLICATION_CREDENTIALS=/app/codes/gcp_key.json`
 
 ### Step 2 - Create GCP resources with Terraform.  
-- Navigate inside the codes folder.  
-`cd codes`  
+- Navigate inside the terraform folder.  
 - Run following commands and follow instructions – **Change the variable names as per your set up**.  
 `terraform init`    
 `terraform plan -var="project_name=your_gcp_project_id" -var="region=your_region" -var="gcs_bucket_name=your_gcs_bucket_name" -var="bq_dataset_name=your_bq_dataset_name" -var="spark_cluster_name=your-spark-cluster-name"`    
 `terraform apply -var="project_name=your_gcp_project_id" -var="region=your_region" -var="gcs_bucket_name=your_gcs_bucket_name" -var="bq_dataset_name=your_bq_dataset_name" -var="spark_cluster_name=your-spark-cluster-name"`    
 
-### Step 3 - Build deployment and save it to cloud (Make sure you are connected to prefect cloud).  
-- `python pipeline_deployment_build.py`  
-
-### Step 4 - Run the pipeline  
-- Go to prefect cloud to manage your runs. Your deployment ‘Data Pipeline Main Flow - DE ZC 2023’ should be created in the deployments section. Do a quick run and edit the parameters.  
-  
-- Parameters explanation here.  
-  - "gcp_key_path”: "/app/codes/gcp_key.json" – Path to gcp key. You don’t need to change this.  
-    
-  - "alpha_vantage_key” : "alpha_vantage_api_key" – Your free Alpha Vantage API key.
-  - "from_date” : "2023-03-27" – Starting date (**Monday** in YYYY-MM-DD format) to pull data from.
-  - "to_date" : "2023-04-03" – Ending date (**Monday** in YYYY-MM-DD) to pull date until. 
-  - "gcs_bucket_name" : "your_gcs_bucket_name" – GCS data lake bucket name you have set with terraform.
+### Step 3 - Run the pipeline  
+- Parameters explanation here.
+  - datset_url = "raw_data/Google-Playstore.csv"
+  - "GcsBucket_name" : "your_gcs_bucket_name" – GCS data lake bucket name you have set with terraform.
   - "bq_dataset_name” : "your_bq_dataset_name" – BQ dataset name you have set with terraform.
   - "bq_table_name” : "your_bq_table_name" – BQ table to store data in.
   - "spark_cluster_name” : "your-spark-cluster-name" – DataProc cluster name you have set with Terraform.
@@ -109,14 +90,11 @@ This Pipe line contain
 `exit`  
   
 - Delete container.   
-`docker rm de_zc_container`  
+`docker rm de_project_container  
   
 - Delete image.  
-`docker image rm de_zc`
+`docker image rm de_final_project
 
-## Dashboard and results 
-
-  
 
 ## Reviewing criteria  
 - Problem description – *The problem statement and project description is defined [here](#problem-statement-and-project-description).*  
