@@ -13,8 +13,6 @@ Here Comes the problem statements:
 - Find which are the nonfree apps most downloaded category wise
 
 ## Technologies, tools and data sources used
-- Alpha Vantage API - For stock values & stock sentiments.  
-  
 - Docker - For containerization of the pipeline.
 - Python - To build the data pipeline.
 - Terraform - Infrastructure-as-a-Service (IaaS) tool to manage GCP resources.
@@ -32,38 +30,12 @@ Here Comes the problem statements:
 
 
 ## Pipeline explanation
-- The pipeline is written in python and is run entirely inside a docker container. The docker image is created using a python base image with version 3.9. Refer to the *Dockerfile* for more details and *requirements.txt* for the python libraries used/installed.  
-  
-- Prefect library/prefect cloud is used for orchestration to create flows/tasks and pipeline deployments to monitor runs. The prefect server is running in the cloud and the prefect agent is running in the docker container. 
-
-- Terraform is used to manage GCP resources - GCS, BQ DWH and DataProc Cluster. Relevant variables are defined in the *variables.tf* file for reproducibility. Resource configuration is set in *main.tf* file. Since our data size is small, for the DataProc Cluster we are using 1 master and no workers along with lowest compute configuration.  
-
-- *pipeline_deployment_build.py* is the main pipeline file written in python and is built to be deployed on the prefect cloud. The main pipeline file has 4 important functions -> **pull_time_series_stock_data**, **pull_time_series_stock_sentiment_data**, **upload_to_gcs** and **submit_spark_job**.  
-
-  - **The pull_time_series_stock_data** function makes API calls to Alpha Vantage and pulls time series daily adjusted data for the stocks we have defined in our symbols dictionary. For each stock we need to make one call to pull this data. Example call - https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo&outputsize=full. We are storing only 4 fields when creating the data frame -> Stock_Name(Name of the ticker), Stock(Ticker), Day(Date in day format) & Value(The daily adjusted closing value in USD).  
-
-  - **The pull_time_series_stock_sentiment_data** function makes calls to Alpha Vantage to pull sentiment data taking 5 days at a time for each stock. This is because the response will return a maximum of 200 articles and their sentiments at a time so if we are pulling yearlong data, we will need to do this in batches of 5 days data at a time or we will not get enough data points. Example call - https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=IBM&apikey=demo&topics=technology&time_from=20230320T0000&time_to=20230325T0000&limit=200. We are storing only 7 fields when creating the data frame -> Stock_Name(Name of the ticker), Stock(Ticker), Time(Time stamp when the article was published in UTC), Day(Date in day format), URL(Article URL), Title(Article title), Sentiment(Sentiment value) & Record_Count(1 for each record which will be used post data transformation for aggregation purposes).  
-
-  - There is a limit of 5 calls per min to Alpha Vantage with the free key, so we have a pausing mechanism that will pause the execution for 60 secs + 2 secs (for buffer) after every 5 calls made. There is also a limit of 500 calls per day, so we must make sure not to breach that limit. Would be best to calculate how many calls would be required for the data fetch before doing a run. Example – if the stocks to pull data for is 5; The time period in weeks to pull the data for is 52 then total calls would be -> time series daily adjusted data(5 calls) + time series sentiment data(5*52 calls) = 265 calls. Since 265 is below the daily limit of 500, it is safe to move forward.   
-
-  - **The upload_to_gcs** function is uploading our raw data/dataframes and spark job python file from docker to the GCS bucket we created with Terraform.   
-
-  - The **submit_spark_job** function is submitting the spark job python file from GCS to DataProc to transform raw data present in GCS and store/append it to our BQ DWH table. Refer *spark_job.py* for more details. I am joining stock data and stock sentiment data using an outer join so that I can visualise their correlation and identify individual articles if need be.  
-
-- The dashboard is built on top of the BQ table.
-  - Following fields are calculated to use in the dashboard :
-    - Daily Adjusted Closing Value = SUM(Value)/COUNT(Value)  
-     
-    - Average Sentiment = SUM(Sentiment)/SUM(Record_Count)
-    - Maximum Positive Sentiment = MAX(Sentiment)
-    - Maximum Negative Sentiment = MIN(Sentiment)
-    
-  - I have created 3 charts in the dashboard :
-    - Day-on-day trend of daily adjusted closing value and daily average sentiment for the selected stock.  
-      
-    - Day-on-day maximum positive and negative sentiment recorded for the selected stock. 
-    - Table to identify topmost negative or positive articles.
-
+This Pipe line contain 
+- Extraction : Extracting the dataset which i stored on my google drive . it is approx 647MB size and contain more than 2 lakh Rows and 24 columns.
+- Ingesting data into the Google cloud storage : Here we are ingesting data in to google cloud storage for further processing the data .
+- Ingesting Pyspark-file into the google cloud storage : for further Preprocessing pyspark-file stored in google cloud storage
+- Running spark cluster : Here we are extracting pysprk file from google cloud storage and then aading this file with required details to run the spark cluster on dataproc
+- Ingesting data into the BigQuery : After Processing the data it pushed into the Big Query for Furthe querying and aanalysing data.
 
 ## How to replicate 
 
