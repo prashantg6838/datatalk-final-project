@@ -1,0 +1,6 @@
+terraform/.terraform/providers/registry.terraform.io/hashicorp/google/*
+raw_data/Google-Playstore.csv
+.terraform.lock.hd
+dataproc.txt
+terraform.tfstate
+terraform.tfstate.backup
