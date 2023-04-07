@@ -1,7 +1,8 @@
 # Build an end-to-end automated data pipeline to visualize Google Playstore data.
 
 This project is created by me for the [Data Engineering Zoomcamp 2023](https://github.com/DataTalksClub/data-engineering-zoomcamp).  
-(https://github.com/prashantg6838/datatalk-final-project/blob/main/background%20image%20.JPG)
+
+![Background Diagram](https://github.com/prashantg6838/datatalk-final-project/blob/main/background%20image%20.JPG)
 
 ## Problem statement and project description
 This Project is about Understanding and getting overview of google playstore data . The dataset contain combination of various categories of Apps such as Entertainment,gaming,study related,
