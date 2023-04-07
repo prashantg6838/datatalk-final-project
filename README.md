@@ -26,7 +26,7 @@ Here Comes the problem statements:
 
 ## Pipeline diagram
  
-![Pipeline Diagram](https://github.com/prashantg6838/datatalk-final-project/blob/main/Data-talk-final-project-Diagram.drawio.png)
+![Pipeline Diagram](https://github.com/prashantg6838/datatalk-final-project/blob/main/Data-talk-final-project-Diagram.png)
 
 
 ## Pipeline explanation
