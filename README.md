@@ -31,8 +31,8 @@ Here Comes the problem statements:
 
 
 ## Pipeline explanation
-This Pipe line contain 
-- Extraction : Extracting the dataset which i stored on my google drive . it is approx 647MB size and contain more than 2 lakh Rows and 24 columns.
+This Pipe line contain five stages such as follows : 
+- Extraction : Extracting the raw dataset from web and storing it in local storage.
 - Ingesting data into the Google cloud storage : Here we are ingesting data in to google cloud storage for further processing the data .
 - Ingesting Pyspark-file into the google cloud storage : for further Preprocessing pyspark-file stored in google cloud storage
 - Running spark cluster : Here we are extracting pysprk file from google cloud storage and then aading this file with required details to run the spark cluster on dataproc
@@ -40,8 +40,12 @@ This Pipe line contain
 
 ### Step 1 - Set up – Takes approximately 15 mins.  
 - Download the entire folder/clone the repo. 
-- Download data using command prompt !wget -O file.csv "https://drive.google.com/u/0/uc?id=13TpXWf9I6I2Aaa5Xjy_wfYHjem_4bMqC&export=download"
-- create raw_data named folder and store the csv data and rename to Google-Playstore.csv
+- Download data using linux shell/git bash prompt .
+  - git clone https://github.com/gauthamp10/Google-Playstore-Dataset.git
+  - cd Google-Playstore-Dataset/dataset/
+  - for f in *.tar.gz; do tar -xvf "$f"; done
+  - cat Part?.csv > Google-Playstore.csv
+- create raw_data named folder and store the csv data .
 - Start Docker desktop and open terminal in the folder containing your DockerFile.  
 - Build Docker image.  
 `docker build -t de_final_project .`  
