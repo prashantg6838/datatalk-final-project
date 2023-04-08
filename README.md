@@ -32,11 +32,11 @@ Here Comes the problem statements:
 
 ## Pipeline explanation
 This Pipe line contain five stages such as follows : 
-- Extraction : Extracting the raw dataset from web and storing it in local storage.
-- Ingesting data into the Google cloud storage : Here we are ingesting data in to google cloud storage for further processing the data .
-- Ingesting Pyspark-file into the google cloud storage : for further Preprocessing pyspark-file stored in google cloud storage
-- Running spark cluster : Here we are extracting pysprk file from google cloud storage and then aading this file with required details to run the spark cluster on dataproc
-- Ingesting data into the BigQuery : After Processing the data it pushed into the Big Query for Furthe querying and aanalysing data.
+- **Extraction** : Extracting the raw dataset from web and storing it in local storage.
+- **Ingesting data into the Google cloud storage** : Here we are ingesting data in to google cloud storage for further processing the data .
+- **Ingesting Pyspark-file into the google cloud storage** : for further Preprocessing pyspark-file stored in google cloud storage
+- **Running spark cluster** : Here we are extracting pysprk file from google cloud storage and then aading this file with required details to run the spark cluster on dataproc
+- **Ingesting data into the BigQuery** : After Processing the data it pushed into the Big Query for Further querying and analysing data.
 
 ### Step 1 - Set up – Takes approximately 15 mins.  
 - Download the entire folder/clone the repo. 
