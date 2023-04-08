@@ -1,5 +1,10 @@
 # Build an end-to-end automated data pipeline to visualize Google Playstore data.
 This project is created by me for the [Data Engineering Zoomcamp 2023](https://github.com/DataTalksClub/data-engineering-zoomcamp). 
+This text has `red` font color.
+
+This text has `green` font color.
+
+This text has `blue` font color.
 
 This text has <span style="color: red;">red font color</span>.
 
