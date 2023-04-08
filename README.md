@@ -1,4 +1,5 @@
 # Build an end-to-end automated data pipeline to visualize Google Playstore data.
+This text has a <span style="background-color: yellow;">yellow background</span>.
 
 This project is created by me for the [Data Engineering Zoomcamp 2023](https://github.com/DataTalksClub/data-engineering-zoomcamp).  
 
