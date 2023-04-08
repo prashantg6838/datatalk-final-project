@@ -14,16 +14,16 @@ Here Comes the problem statements:
 - Find which are the nonfree apps most downloaded category wise
 
 ## Technologies, tools and data sources used
-- Docker - For containerization of the pipeline.
-- Python - To build the data pipeline.
-- Terraform - Infrastructure-as-a-Service (IaaS) tool to manage GCP resources.
-- Prefect - Orchestration tool to build deployments and monitor tasks and flows.
-- Spark - To make data transformations on raw data.
-- Google Cloud Platform (GCP) 
-  - Google Cloud Storage (GCS) - Data Lake. 
-  - Big Query (BQ DWH) - Data warehouse.
-  - DataProc Cluster - Spark cluster to run spark jobs. 
-- Power BI - To create dashboard and visualise the results.
+- **Docker** - For containerization of the pipeline.
+- **Python** - To build the data pipeline.
+- **Terraform** - Infrastructure-as-a-Service (IaaS) tool to manage GCP resources.
+- **Prefect** - Orchestration tool to build deployments and monitor tasks and flows.
+- **Spark** - To make data transformations on raw data.
+- **Google Cloud Platform (GCP)** 
+  - **Google Cloud Storage (GCS)** - Data Lake. 
+  - **Big Query (BQ DWH)** - Data warehouse.
+  - **DataProc Cluster** - Spark cluster to run spark jobs. 
+- **Power BI** - To create dashboard and visualise the results.
 
 ## Pipeline diagram
  
