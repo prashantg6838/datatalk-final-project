@@ -69,16 +69,16 @@ This Pipe line contain five stages such as follows :
 
 ### Step 3 - Run the pipeline  
 - Parameters explanation here.
-  - datset_url = "raw_data/Google-Playstore.csv" - raw data file in local system
-  - "GcsBucket_name" : "your_gcs_bucket_name" – GCS data lake bucket name you have set with terraform.
-  - "bq_dataset_name” : "your_bq_dataset_name" – BQ dataset name you have set with terraform.
-  - "bq_table_name” : "your_bq_table_name" – BQ table to store data in.
-  - "spark_cluster_name” : "your-spark-cluster-name" – DataProc cluster name you have set with Terraform.
-  - "spark_job_region” : " your_region" – Region you have set with Terraform.
-  - "spark_job_file” : "spark_job.py" – Spark job python file. You don’t need to change this.  
+  - **datset_url** = "raw_data/Google-Playstore.csv" - raw data file in local system
+  - **GcsBucket_name** : "your_gcs_bucket_name" – GCS data lake bucket name you have set with terraform.
+  - **bq_dataset_name**: "your_bq_dataset_name" – BQ dataset name you have set with terraform.
+  - **bq_table_name** : "your_bq_table_name" – BQ table to store data in.
+  - **spark_cluster_name** : "your-spark-cluster-name" – DataProc cluster name you have set with Terraform.
+  - **spark_job_region** : " your_region" – Region you have set with Terraform.
+  - **spark_job_file** : "spark_job.py" – Spark job python file. You don’t need to change this.  
 
 - Start prefect agent in your docker container and wait for the flow run to start.  
-`prefect orion start
+  prefect orion start
 - open another on command prompt 
  Run python flows\complete_etl_pipline.py
 - Once the agent picks up the run, you can then monitor its progress in prefect cloud.  
