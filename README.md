@@ -7,10 +7,10 @@ This project is created by me for the [Data Engineering Zoomcamp 2023](https://g
 This Project is about Understanding and getting overview of google playstore data . The dataset contain combination of various categories of Apps such as Entertainment,gaming,study related,
 Bussiness Related and much more . 
 Here Comes the problem statements:
-- Find the most rated apps
-- Find the most rated apps category wise
-- Find which are the free apps most downloaded
-- Find which are the nonfree apps most downloaded category wise
+- Find the most rated apps.
+- Find the most rated apps category wise.
+- Find the most downloaded free apps.
+- Find which are the nonfree apps most downloaded category wise.
 
 ## Technologies, tools and data sources used
 - **Docker** - For containerization of the pipeline.
@@ -38,33 +38,30 @@ This Pipe line contain five stages such as follows :
 - **Ingesting data into the BigQuery** : After Processing the data it pushed into the Big Query for Further querying and analysing data.
 
 ### Step 1 - Set up – Takes approximately 15 mins.  
-- Download the entire folder/clone the repo. 
-- Download data using linux shell/git bash prompt .
+- 1) Download File form git hub to local system :Go to command prompt --> change location using cd -->  Copy this command --> 
+        git clone https://github.com/prashantg6838/datatalk-final-project.git and paste into the command prompt  
+- 2) Download data using linux shell/git bash prompt .
   - git clone https://github.com/gauthamp10/Google-Playstore-Dataset.git
   - cd Google-Playstore-Dataset/dataset/
   - for f in *.tar.gz; do tar -xvf "$f"; done
   - cat Part?.csv > Google-Playstore.csv
-- create raw_data named folder and store the csv data .
-- Start Docker desktop and open terminal in the folder containing your DockerFile.  
-- Build Docker image.  
-`docker build -t de_final_project .`  
-- Create container from image/start the container.   
-`docker run -it --name de_project_container de_final_project`  
-- *Going forward use this command to start the container.  
-`docker start -i de_project_containe`  
-- Install gcloud cli and authorize gcloud with browser. You’ll also need your GCP project ID handy to initialise gcloud. Note - Docker OS is Debian. https://cloud.google.com/sdk/docs/install#deb.  
-- Install Terraform. https://developer.hashicorp.com/terraform/downloads. For installation choose Linux(Ubuntu/Debian).
-- Connect to prefect cloud with your key.  
-`prefect cloud login -k prefect_key`  
-- Set environmental variable for GCP key  
-`export GOOGLE_APPLICATION_CREDENTIALS=/app/codes/gcp_key.json`
-
+- 3) create raw_data named folder and store the csv data . 
+- 4) Install gcloud cli and authorize gcloud with browser. You’ll also need your GCP project ID handy to initialise gcloud. 
+    https://cloud.google.com/sdk/docs/downloads-interactive.
+- 5) open ANACONDA PROMPT direct to project folder and create virtual enviornment
+    - conda create -n virtual-env-name python=3.9  
+    - once virtual env created the activate it using 
+      - conda activate virtual-env-name 
+    - once virtual env activated install librarires using 
+      - pip install requirement.txt 
+- 6) open another on command prompt to Set environmental variable for GCP key  
+      - export GOOGLE_APPLICATION_CREDENTIALS=/app/codes/gcp_key.json (note - change path to your json key)
+      
 ### Step 2 - Create GCP resources with Terraform.  
-- Navigate inside the terraform folder.  
+- 1) Navigate inside the terraform folder.  
 - Run following commands and follow instructions – **Change the variable names as per your set up**.  
-`terraform init`    
-`terraform plan -var="project_name=your_gcp_project_id" -var="region=your_region" -var="gcs_bucket_name=your_gcs_bucket_name" -var="bq_dataset_name=your_bq_dataset_name" -var="spark_cluster_name=your-spark-cluster-name"`    
-`terraform apply -var="project_name=your_gcp_project_id" -var="region=your_region" -var="gcs_bucket_name=your_gcs_bucket_name" -var="bq_dataset_name=your_bq_dataset_name" -var="spark_cluster_name=your-spark-cluster-name"`    
+  - `terraform init`    
+  - `terraform plan -var="project_name = your_gcp_project_id" "`    
 
 ### Step 3 - Run the pipeline  
 - Parameters explanation here.
