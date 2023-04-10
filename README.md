@@ -40,7 +40,7 @@ This Pipe line contain five stages such as follows :
 ### Step 1 - Set up – Takes approximately 15 mins.  
 - 1) Download File form git hub to local system :Go to command prompt --> change location using cd -->  Copy this command --> 
      - git clone https://github.com/prashantg6838/datatalk-final-project.git and paste into the command prompt  
-- 2) Download data using linux shell/git bash prompt .
+- 2) Download data using linux shell/git bash prompt .(note : data collected between year 2010 to 2017)
   - git clone https://github.com/gauthamp10/Google-Playstore-Dataset.git
   - cd Google-Playstore-Dataset/dataset/
   - for f in *.tar.gz; do tar -xvf "$f"; done
