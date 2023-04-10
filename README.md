@@ -71,7 +71,7 @@ note. Check as of now anaconda prompt and command prompt is running .
 ### Step 3 - Run the pipeline  
 - 1) goto the project folder and open file in vscode or any editor flows\complete_etl_pipeline.py  
   -  set parameters as explained below . 
-  - **datset_url** = "raw_data/Google-Playstore.csv" - raw data file in local system
+  - **datset_url** = "raw_data/Google-Playstore.csv" - raw data file in local system.
   - **GcsBucket_name** : "your_gcs_bucket_name" – GCS data lake bucket name you have set with terraform.
   - **bq_dataset_name**: "your_bq_dataset_name" – BQ dataset name you have set with terraform.
   - **bq_table_name** : "your_bq_table_name" – BQ table to store data in.
